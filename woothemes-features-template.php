@@ -76,16 +76,16 @@ function woothemes_features ( $args = '' ) {
 				
 				$class = 'feature';
 
-				if ( count( $query ) == $i || ( 0 == $i % $args['per_row'] ) ) {
+				if( ( 0 == $i % $args['per_row'] ) ) {
 					$class .= ' last';
-				} elseif ( 0 == ( $i - 1 ) % $args['per_row'] && count( $query ) != $i ) {
+				} elseif ( 0 == ( $i - 1 ) % ( $args['per_row'] ) ) {
 					$class .= ' first';
 				}
 
 
 				$title = get_the_title();
 				if ( true == $args['link_title'] ) {
-					$title = '<a href="' . esc_url( get_permalink( get_the_ID() ) ) . '" title="' . esc_attr( $title ) . '">' . $title . '</a>';
+					$title = '<a href="' . esc_url( $post->url ) . '" title="' . esc_attr( $title ) . '">' . $title . '</a>';
 				}
 
 				// Optionally display the image, if it is available.
@@ -135,7 +135,8 @@ function woothemes_features_shortcode ( $atts, $content = null ) {
 		'id' => 0, 
 		'echo' => true, 
 		'size' => 50, 
-		'per_row' => 3
+		'per_row' => 3, 
+		'link_title' => true
 	);
 
 	$args = shortcode_atts( $defaults, $atts );
