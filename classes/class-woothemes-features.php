@@ -31,7 +31,7 @@ class Woothemes_Features {
 		$this->dir = dirname( $file );
 		$this->file = $file;
 		$this->assets_dir = trailingslashit( $this->dir ) . 'assets';
-		$this->assets_url = esc_url( str_replace( WP_PLUGIN_DIR, WP_PLUGIN_URL, $this->assets_dir ) );
+		$this->assets_url = esc_url( trailingslashit( plugins_url( '/assets/', $file ) ) );
 		$this->token = 'feature';
 
 		$this->load_plugin_textdomain();
@@ -66,8 +66,8 @@ class Woothemes_Features {
 	 * 
 	 * @access public
 	 * @param string $token
-	 * @param string 'Testimonial'
-	 * @param string 'Testimonials'
+	 * @param string 'Features'
+	 * @param string 'Features'
 	 * @param array $supports
 	 * @return void
 	 */
@@ -80,7 +80,7 @@ class Woothemes_Features {
 			'edit_item' => sprintf( __( 'Edit %s', 'woothemes-features' ), __( 'Feature', 'woothemes-features' ) ),
 			'new_item' => sprintf( __( 'New %s', 'woothemes-features' ), __( 'Feature', 'woothemes-features' ) ),
 			'all_items' => sprintf( __( 'All %s', 'woothemes-features' ), __( 'Features', 'woothemes-features' ) ),
-			'view_item' => sprintf( __( 'View %s', 'woothemes-features' ), __( 'Testimonial', 'woothemes-features' ) ),
+			'view_item' => sprintf( __( 'View %s', 'woothemes-features' ), __( 'Feature', 'woothemes-features' ) ),
 			'search_items' => sprintf( __( 'Search %a', 'woothemes-features' ), __( 'Features', 'woothemes-features' ) ),
 			'not_found' =>  sprintf( __( 'No %s Found', 'woothemes-features' ), __( 'Features', 'woothemes-features' ) ),
 			'not_found_in_trash' => sprintf( __( 'No %s Found In Trash', 'woothemes-features' ), __( 'Features', 'woothemes-features' ) ),
@@ -97,9 +97,9 @@ class Woothemes_Features {
 			'query_var' => true,
 			'rewrite' => array( 'slug' => 'feature' ),
 			'capability_type' => 'post',
-			'has_archive' => array( 'slug' => 'features' ),
+			'has_archive' => true,
 			'hierarchical' => false,
-			'supports' => array( 'title', 'editor', 'thumbnail', 'page-attributes' ), 
+			'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'page-attributes' ), 
 			'menu_position' => 5, 
 			'menu_icon' => ''
 		);
@@ -317,7 +317,7 @@ class Woothemes_Features {
 	 * @return   void
 	 */
 	public function enqueue_admin_styles () {
-		wp_register_style( 'woothemes-features-admin', $this->assets_url . '/css/admin.css', array(), '1.0.2' );
+		wp_register_style( 'woothemes-features-admin', esc_url( $this->assets_url . 'css/admin.css' ), array(), '1.0.2' );
 		wp_enqueue_style( 'woothemes-features-admin' );
 	} // End enqueue_admin_styles()
 
@@ -399,6 +399,7 @@ class Woothemes_Features {
 		$query_args['numberposts'] = $args['limit'];
 		$query_args['orderby'] = $args['orderby'];
 		$query_args['order'] = $args['order'];
+		$query_args['suppress_filters'] = 0;
 		
 		if ( is_numeric( $args['id'] ) && ( intval( $args['id'] ) > 0 ) ) {
 			$query_args['p'] = intval( $args['id'] );
