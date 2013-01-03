@@ -209,7 +209,8 @@ class Woothemes_Widget_Features extends WP_Widget {
 					'ID' => __( 'Entry ID', 'woothemes-features' ), 
 					'title' => __( 'Title', 'woothemes-features' ), 
 					'date' => __( 'Date Added', 'woothemes-features' ), 
-					'menu_order' => __( 'Specified Order Setting', 'woothemes-features' )
+					'menu_order' => __( 'Specified Order Setting', 'woothemes-features' ), 
+					'rand' => __( 'Random Order', 'woothemes-features' )
 					);
 	} // End get_orderby_options()
 
@@ -220,8 +221,8 @@ class Woothemes_Widget_Features extends WP_Widget {
 	 */
 	protected function get_order_options () {
 		return array(
-					'asc' => __( 'Ascending', 'woothemes-features' ), 
-					'desc' => __( 'Descending', 'woothemes-features' )
+					'ASC' => __( 'Ascending', 'woothemes-features' ), 
+					'DESC' => __( 'Descending', 'woothemes-features' )
 					);
 	} // End get_order_options()
 } // End Class
