@@ -4,7 +4,7 @@ Donate link: http://woothemes.com/
 Tags: features, widget, shortcode, template-tag, services
 Requires at least: 3.4.2
 Tested up to: 4.0
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -109,6 +109,9 @@ You sure can, just use the following snippet:
 
 == Upgrade Notice ==
 
+= 1.4.4 =
+* Removes deprecated constructor call for WP_Widget, action hook fix.
+
 = 1.4.0 =
 * WordPress 3.8 support (3.8 is now the minimum required version).
 * Adds the ability to link only features with a custom URL set.
@@ -141,6 +144,11 @@ You sure can, just use the following snippet:
 * Initial release. Woo!
 
 == Changelog ==
+
+= 1.4.4 =
+* 2015.07.06
+* Fix - Action hook typo (props helgatheviking).
+* Removes deprecated constructor call for WP_Widget
 
 = 1.4.3 =
 * 2014.08.18
